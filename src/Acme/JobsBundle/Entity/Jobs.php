@@ -5,12 +5,12 @@ namespace Acme\JobsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Acme\JobsBundle\Entity\Jobs
+ * Acme\JobsBundle\Entity\Job
  *
  * @ORM\Table(name="jobs")
  * @ORM\Entity
  */
-class Jobs
+class Job
 {
     /**
      * @var integer $id
@@ -127,9 +127,9 @@ class Jobs
     private $expiresAt;
 
     /**
-     * @var Categories
+     * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Categories")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
