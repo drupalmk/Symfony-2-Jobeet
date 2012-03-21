@@ -3,7 +3,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <title>{% block title %}{% endblock %} | Jobeet - Your best job board</title>
-      <link href="{{ asset('bundles/jobeet/css/main.css') }}" type="text/css" rel="stylesheet" />
+      <link href="{{ asset('bundles/jobs/css/main.css') }}" type="text/css" rel="stylesheet" />
       {% block stylesheets %}{% endblock %}
       <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
       <link rel="alternate" type="application/atom+xml" title="Latest Jobs"
@@ -15,7 +15,7 @@
             <div class="content">
                <h1>
                   <a href="{{ path('_welcome') }}">
-                     <img src="{{ asset('bundles/jobeet/images/logo.jpg') }}" alt="Jobeet Job Board"/>
+                     <img src="{{ asset('bundles/jobs/images/logo.jpg') }}" alt="Jobeet Job Board"/>
                   </a>
                </h1>
                <div id="sub_header">
@@ -57,11 +57,7 @@
                  <ul>
                    {% for job in jobeetEntity.getHistoryJobs() %}
                      <li>
-                        <a href="{{ path('job_show_user', { 'id': job.id, 
-                           'companySlug': job.companySlug,
-                           'locationSlug': job.locationSlug,
-                           'positionSlug': job.positionSlug
-                           }) }}">
+                        <a href="{{ path('job_show', { 'id': job.id }) }}">
                            {{ job.position}} - {{ job.company }}
                         </a>                     
                      </li>
@@ -77,9 +73,9 @@
          <div id="footer">
             <div class="content">
                <span class="symfony">
-                  <img src="{{ asset('bundles/jobeet/images/jobeet-mini.png') }} />
+                  <img src="{{ asset('bundles/jobs/images/jobeet-mini.png') }} />
                   powered by <a href="http://www.symfony-project.org/">
-                     <img src="{{ asset('bundles/jobeet/images/symfony.gif') }} alt="symfony framework" />
+                     <img src="{{ asset('bundles/jobs/images/symfony.gif') }} alt="symfony framework" />
                   </a>
                </span>
                <ul>
