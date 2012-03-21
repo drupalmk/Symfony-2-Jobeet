@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="jobs")
  * @ORM\Entity
  */
-class Job
+class Jobs
 {
     /**
      * @var integer $id
