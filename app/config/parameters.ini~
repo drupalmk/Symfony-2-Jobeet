@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ; These parameters can be imported into other config files
 ; by enclosing the key with % (like %database_user%)
 ; Comments start with ';', as in php.ini
@@ -14,3 +15,5 @@
     mailer_password=""
     locale="en"
     secret="ce946f02b6b905877766a1005cbf3f663"
+=======
+>>>>>>> d1a5b69832127948cf58930cc5f9db96923e8b98
