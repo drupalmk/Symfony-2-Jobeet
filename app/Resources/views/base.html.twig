@@ -51,6 +51,7 @@
                {{ app.session.flash('error') }}
             </div>
             {% endif %}
+	    {% comment %}
             {% if jobeetEntity.getHistoryJobs() %}
                <div id="job_history">
                  Recent viewed jobs:
@@ -65,6 +66,7 @@
                  </ul>
                </div>
             {% endif %}
+            {% endcomment %}
             <div class="content">
                {% block content %}{% endblock %}
             </div>
