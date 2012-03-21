@@ -3,3 +3,6 @@
 /app/cache/*
 /app/logs/*
 /vendor/
+/parameters.ini
+
+
