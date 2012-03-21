@@ -1,0 +1,7 @@
+parameters:
+#    jobs.example.class: Acme\JobsBundle\Example
+
+services:
+#    jobs.example:
+#        class: %jobs.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
