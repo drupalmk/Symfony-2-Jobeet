@@ -1,3 +1,8 @@
 JobsBundle_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: JobsBundle:Default:index }
+
+JobsBundle_jobs:
+    resource: "@JobsBundle/Resources/config/routing/jobs.yml"
+    prefix:   /jobs
+

@@ -1,0 +1,30 @@
+jobs:
+    pattern:  /
+    defaults: { _controller: "JobsBundle:Jobs:index" }
+
+jobs_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "JobsBundle:Jobs:show" }
+
+jobs_new:
+    pattern:  /new
+    defaults: { _controller: "JobsBundle:Jobs:new" }
+
+jobs_create:
+    pattern:  /create
+    defaults: { _controller: "JobsBundle:Jobs:create" }
+    requirements: { _method: post }
+
+jobs_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JobsBundle:Jobs:edit" }
+
+jobs_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JobsBundle:Jobs:update" }
+    requirements: { _method: post }
+
+jobs_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JobsBundle:Jobs:delete" }
+    requirements: { _method: post }
