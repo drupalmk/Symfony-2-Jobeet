@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+    ServerName www.jobeet.localhost
+    ServerAlias jobeet.localhost
+    ServerAdmin webmaster@localhost
+
+    DocumentRoot /home/marek/devel/sf2/Jobeet/web
+    <Directory /home/marek/devel/sf2/Jobeet/web/>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ /app.php [QSA,L]
+        </IfModule>
+    </Directory>
+</VirtualHost>
