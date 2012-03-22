@@ -3,15 +3,18 @@
 namespace Acme\JobsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+    
 /**
  * Acme\JobsBundle\Entity\Job
  *
  * @ORM\Table(name="jobs")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class Jobs
 {
+
+    const ACTIVE_DAYS = 30;
     /**
      * @var integer $id
      *
@@ -136,8 +139,17 @@ class Jobs
      */
     private $category;
 
+   
+    
+    /** @ORM\PrePersist */
+    public function setDateTimesOnPersist()
+    {
+       $this->setCreatedAt(new \DateTime); 
+       $createdAt = clone($this->getCreatedAt());
+       $this->setExpiresAt($createdAt->modify('+'.self::ACTIVE_DAYS.' days'));
+    }
 
-
+    
     /**
      * Get id
      *
