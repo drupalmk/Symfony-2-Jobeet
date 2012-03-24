@@ -1,0 +1,31 @@
+Acme\JobsBundle\Entity\Jobs:
+    properties:
+        jobType:
+            - NotBlank:
+                message: Must not be blank
+            - Choice:
+                callback: getTypesValues
+                message: Choose valid type
+        company:
+            - NotBlank:
+                message: Must not be blank
+        position:
+            - NotBlank:
+                message: Must not be blank
+        location:
+            - NotBlank:
+                message: Must not be blank
+        file:
+            - File:
+                mimeTypes: [image/jpeg, image/png]
+        description:
+            - NotBlank:
+                message: Must not be blank
+        howToApply:
+            - NotBlank:
+                message: Must not be blank
+        email:
+            - NotBlank:
+                message: Must not be blank
+            - Email:
+                message: The email "{{ value }}" is not a valid email.

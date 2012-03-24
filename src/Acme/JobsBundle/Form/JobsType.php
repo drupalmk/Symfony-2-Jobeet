@@ -17,13 +17,13 @@ class JobsType extends AbstractType
             ->add('jobType', 'choice', array('choice_list' => new JobTypeChoices, 'expanded' => true, 'multiple' => false))
             ->add('company')
             ->add('file', 'file', array('label' => 'Company logo'))
-            ->add('url')
+            ->add('url', 'url')
             ->add('position')
             ->add('location')
             ->add('description', 'textarea')
             ->add('howToApply', 'textarea', array('label' => 'How to apply?'))
             ->add('isPublic', 'checkbox', array('label' => 'Public?'))
-            ->add('email') 
+            ->add('email', 'email') 
         ;
     }
 
