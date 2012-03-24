@@ -90,5 +90,6 @@ Acme\JobsBundle\Entity\Jobs:
           referencedColumnName: id
       orphanRemoval: false
   lifecycleCallbacks:
-    prePersist: [ setDateTimesOnPersist ]
-    preUpdate: [ setUpdatedAtOnUpdate ]
+    prePersist: [ setDateTimesOnPersist, generateRandomLogoFilename, upload ]
+    preUpdate: [ setUpdatedAtOnUpdate, generateRandomLogoFilename, upload ]
+    postRemove: [ removeUpload ]

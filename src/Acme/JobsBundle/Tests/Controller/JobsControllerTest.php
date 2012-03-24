@@ -43,7 +43,9 @@ class JobsControllerTest extends WebTestCase
         $crawler = $client->followRedirect();
         
         $this->assertTrue($crawler->filter('form#job_form')->count() == 0);
+        
         $this->assertTrue($crawler->filter('#job .logo')->count() == 1);
+        $this->assertRegExp('/src="\/uploads\/jobs\/[a-z0-9]*.gif/', $client->getResponse()->getContent(), 'There is no logo');
 
         $crawler = $client->click($crawler->selectLink('Edit')->link());
         
@@ -53,6 +55,7 @@ class JobsControllerTest extends WebTestCase
 
 
     }
+    
     /*
     public function testCompleteScenario()
     {

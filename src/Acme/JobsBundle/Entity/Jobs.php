@@ -88,8 +88,60 @@ class Jobs
     {
         $this->setUpdatedAt(new \DateTime);
     }
-
     
+    public function generateRandomLogoFilename()
+    { 
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $this->logo = uniqid().'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+           if (file_exists($file))
+               unlink($file);
+        }
+    }
+    
+    public function getAbsolutePath()
+    {
+        return null === $this->logo ? null : $this->getUploadRootDir().'/'.$this->logo;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->logo ? null : $this->getUploadDir().'/'.$this->logo;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+        return 'uploads/jobs';
+    }
+    
+    public function upload()
+    {
+       // the file property can be empty if the field is not required
+       if (null === $this->getFile()) {
+           return;
+       }
+
+       // we use the original file name here but you should
+       // sanitize it at least to avoid any security issues
+   
+       $this->file->move($this->getUploadRootDir(), $this->logo);
+
+       // clean up the file property as you won't need it anymore
+       unset($this->file);
+    }    
     /**
      * Get id
      *
