@@ -38,7 +38,7 @@ class JobsTestCase extends BaseTestCase
     public function testSetDateTimesOnPersist()
     {
       $this->em->persist($this->job);
-      $this->assertEquals($this->job->getExpiresAt()->modify('-'.Jobs::ACTIVE_DAYS.' days'), $this->job->getCreatedAt());
+      $this->assertEquals($this->job->getExpiresAt()->modify('-'.Jobs::ACTIVE_DAYS.' days')->format('Y-m-d H:i:s'), $this->job->getCreatedAt()->format('Y-m-d H:i:s'));
     }
     
     public function tearDown()
