@@ -35,7 +35,17 @@ class Categories
      */
     private $slug;
 
-
+    private $activeJobs;
+    
+    public function setActiveJobs(array $jobs)
+    {
+	$this->activeJobs = $jobs;
+    }
+    
+    public function getActiveJobs()
+    {
+	return $this->activeJobs;
+    }
 
     /**
      * Get id

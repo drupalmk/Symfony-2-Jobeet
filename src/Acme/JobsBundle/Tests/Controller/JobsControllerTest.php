@@ -6,6 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class JobsControllerTest extends WebTestCase
 {
+    
+    public function testJobsLimitByCategoryOnHomePage()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+        
+        $this->assertEquals($crawler->filter('div.category_programming tr')->count(), 10);
+    }
     /*
     public function testCompleteScenario()
     {
