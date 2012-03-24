@@ -21,10 +21,34 @@ class JobsController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('JobsBundle:Jobs')->findAll();
+        $qb = $em->createQueryBuilder();
+        $categories = $qb->add('select', 'c')
+                ->add('from', 'JobsBundle:Categories c')
+                ->innerJoin('c.jobs', 'j', 'WITH', 'j.category = c')
+                ->getQuery()
+                ->getResult();
+                
+        $limit = $this->getParameter('max_jobs_on_homepage');
+        
+        foreach($category as $categories) {
+            $qb = $this->_em->createQueryBuilder();
+            $jobs = $qb->add('select', 'j')
+                     ->add('from', 'JobsBundle:Job j')
+                     ->add('where', $qb->expr()->andx(
+                          $qb->expr()->eq('j.category', '?1'),
+                          $qb->expr()->gt('j.expiresAt', '?2')
+                       ))
+                     ->add('orderBy', 'j.expiresAt DESC')
+                     ->setMaxResults($limit)
+                     ->setParameter(1, $category->getId())
+                     ->setParameter(2, new \DateTime())
+                     ->getQuery()
+                     ->getResult();
+            $category->setActiveJobs($jobs);
+        }
 
         return $this->render('JobsBundle:Jobs:index.html.twig', array(
-            'entities' => $entities
+            'categories' => $categories
         ));
     }
 
@@ -99,7 +123,6 @@ class JobsController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entity = $em->getRepository('JobsBundle:Jobs')->find($id);
 
         if (!$entity) {

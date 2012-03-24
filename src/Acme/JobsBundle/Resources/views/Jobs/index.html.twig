@@ -22,3 +22,36 @@
   </table>
 </div>
 {% endblock %}
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link href="{{ asset('bundles/jobs/css/jobs.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<div id="jobs">
+    {% for category in categories %}
+    <div class="category_{{category.slug}}">
+     <div class="category">
+        <div class="feed">
+           <a href="">Feed</a>
+        </div>
+     </div>
+     <h1>{{category.name}}</h1>
+    </div>
+    <table class="jobs">
+    {% for job in category.activeJobs %}
+    <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+    <td class="location">{{ job.location }}</td>
+    <td class="position">
+      <a href="{{ path('jobs_show', { 'id': entity.id }) }}">
+        {{ job.position}}
+      </a>
+    </td>
+    <td class="company">{{ job.company }}</td>
+    </tr>
+    {% endfor %}      
+</table>
+{% endfor %}  
+</div>
+{% endblock %}
+
