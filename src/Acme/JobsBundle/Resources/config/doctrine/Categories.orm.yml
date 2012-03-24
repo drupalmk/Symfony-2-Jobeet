@@ -1,4 +1,4 @@
-Categories:
+Acme\JobsBundle\Entity\Categories:
   type: entity
   table: categories
   fields:
@@ -21,6 +21,6 @@ Categories:
       nullable: false
   oneToMany: 
     jobs:
-    targetEntity: Jobs
-    mappedBy: category  
+      targetEntity: Jobs
+      mappedBy: category  
   lifecycleCallbacks: {  }

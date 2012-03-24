@@ -46,7 +46,7 @@ class Categories
     {
 	return $this->activeJobs;
     }
-
+    
     /**
      * Get id
      *
@@ -100,5 +100,34 @@ class Categories
     public function __toString()
     {
     	return $this->name;
+    }
+    /**
+     * @var Acme\JobsBundle\Entity\Jobs
+     */
+    private $jobs;
+
+    public function __construct()
+    {
+        $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add jobs
+     *
+     * @param Acme\JobsBundle\Entity\Jobs $jobs
+     */
+    public function addJobs(\Acme\JobsBundle\Entity\Jobs $jobs)
+    {
+        $this->jobs[] = $jobs;
+    }
+
+    /**
+     * Get jobs
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
     }
 }

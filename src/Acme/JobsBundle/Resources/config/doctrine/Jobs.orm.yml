@@ -1,4 +1,4 @@
-Jobs:
+Acme\JobsBundle\Entity\Jobs:
   type: entity
   table: jobs
   fields:
@@ -81,11 +81,12 @@ Jobs:
       type: datetime
       nullable: false
       column: expires_at
-manyToOne:
+  manyToOne:
     category:
-    targetEntity: Marek\JobsBundle\Entity\Categories
-    inversedBy: jobs
-    joinColumns:
-    category_id:
-      referencedColumnName: id
+      targetEntity: Acme\JobsBundle\Entity\Categories
+      inversedBy: jobs
+      joinColumns:
+        category_id:
+          referencedColumnName: id
+      orphanRemoval: false
   lifecycleCallbacks: {  }

@@ -1,27 +1,3 @@
-{% extends '::base.html.twig' %}
-{% block stylesheets %}
-{{ parent() }}
-<link href="{{ asset('bundles/jobs/css/jobs.css') }}" type="text/css" rel="stylesheet" />
-{% endblock %}
-{% block content %}
-<div id="jobs">
-  <table class="jobs">
-    {% set counter = 0 %}
-    {% for entity in entities %}
-      <tr class="{{ cycle(['odd', 'even'], counter) }}">
-      {% set counter = counter + 1 %}
-        <td class="location">{{ entity.location }}</td>
-        <td class="position">
-          <a href="{{ path('jobs_show', { 'id': entity.id }) }}">
-            {{ entity.position}}
-          </a>
-        </td>
-        <td class="company">{{ entity.company }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-</div>
-{% endblock %}
 {% extends "::base.html.twig" %}
 {% block stylesheets %}
 {{ parent() }}
@@ -37,20 +13,20 @@
         </div>
      </div>
      <h1>{{category.name}}</h1>
-    </div>
     <table class="jobs">
     {% for job in category.activeJobs %}
     <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
     <td class="location">{{ job.location }}</td>
     <td class="position">
-      <a href="{{ path('jobs_show', { 'id': entity.id }) }}">
+      <a href="{{ path('jobs_show', { 'id': job.id }) }}">
         {{ job.position}}
       </a>
     </td>
     <td class="company">{{ job.company }}</td>
     </tr>
     {% endfor %}      
-</table>
+    </table>
+  </div>
 {% endfor %}  
 </div>
 {% endblock %}

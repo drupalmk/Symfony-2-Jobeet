@@ -28,12 +28,12 @@ class JobsController extends Controller
                 ->getQuery()
                 ->getResult();
                 
-        $limit = $this->getParameter('max_jobs_on_homepage');
+        $limit = $this->container->getParameter('max_jobs_on_homepage');
         
-        foreach($category as $categories) {
-            $qb = $this->_em->createQueryBuilder();
+        foreach($categories as $category) {
+            $qb = $em->createQueryBuilder();
             $jobs = $qb->add('select', 'j')
-                     ->add('from', 'JobsBundle:Job j')
+                     ->add('from', 'JobsBundle:Jobs j')
                      ->add('where', $qb->expr()->andx(
                           $qb->expr()->eq('j.category', '?1'),
                           $qb->expr()->gt('j.expiresAt', '?2')
