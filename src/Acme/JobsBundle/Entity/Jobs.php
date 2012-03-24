@@ -2,13 +2,37 @@
 
 namespace Acme\JobsBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\HttpFoundation\File\UploadedFile;
     
 class Jobs
 {
 
     const ACTIVE_DAYS = 30;
-
+    
+    public static $types = array(
+       'full-time' => 'Full time',
+       'part-time' => 'Part time',
+       'freelance' => 'Freelance',
+    );
+    
+    public static function getTypes()
+    {
+        return static::$types;
+    }
+    
+    public static function getTypesValues()
+    {
+        return array_keys(static::$types);
+    }
+    
+    public function getTypeName()
+    {
+        return static::$types[$this->getJobType()];
+    }
+    
+    private $file;
+    
     private $id;
 
     private $userId;
@@ -31,7 +55,7 @@ class Jobs
 
     private $isPublic;
 
-    private $isActivated;
+    private $isActivated = false;
 
     private $email;
 
@@ -43,7 +67,15 @@ class Jobs
 
     private $category;
 
-   
+    public function setFile(UploadedFile $file) 
+    {
+        $this->file = $file;
+    }
+  
+    public function getFile()
+    {
+        return $this->file;
+    }
     
     public function setDateTimesOnPersist()
     {

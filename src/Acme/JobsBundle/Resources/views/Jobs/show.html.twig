@@ -12,7 +12,7 @@
   <h2>{{ entity.location }}</h2>
   <h3>
     {{ entity.position }}
-    <small>{{ entity.jobType }}</small>
+    <small>{{ entity.getTypeName() }}</small>
   </h3>
   {% if (entity.logo) %}
     <div class="logo">
