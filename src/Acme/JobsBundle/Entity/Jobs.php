@@ -79,9 +79,11 @@ class Jobs
     
     public function setDateTimesOnPersist()
     {
-       $this->setCreatedAt(new \DateTime); 
-       $createdAt = clone($this->getCreatedAt());
-       $this->setExpiresAt($createdAt->modify('+'.self::ACTIVE_DAYS.' days'));
+       if (! $this->getCreatedAt()) {
+           $this->setCreatedAt(new \DateTime); 
+           $createdAt = clone($this->getCreatedAt());
+           $this->setExpiresAt($createdAt->modify('+'.self::ACTIVE_DAYS.' days'));    
+       }
     }
     
     public function setUpdatedAtOnUpdate()
