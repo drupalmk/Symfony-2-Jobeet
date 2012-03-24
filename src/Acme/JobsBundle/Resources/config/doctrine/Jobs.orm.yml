@@ -89,4 +89,6 @@ Acme\JobsBundle\Entity\Jobs:
         category_id:
           referencedColumnName: id
       orphanRemoval: false
-  lifecycleCallbacks: {  }
+  lifecycleCallbacks:
+    prePersist: [ setDateTimesOnPersist ]
+    preUpdate: [ setUpdatedAtOnUpdate ]

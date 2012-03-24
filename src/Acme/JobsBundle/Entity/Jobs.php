@@ -4,149 +4,57 @@ namespace Acme\JobsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
     
-/**
- * Acme\JobsBundle\Entity\Job
- *
- * @ORM\Table(name="jobs")
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
- */
 class Jobs
 {
 
     const ACTIVE_DAYS = 30;
-    /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
+
     private $id;
 
-    /**
-     * @var integer $userId
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=true)
-     */
     private $userId;
 
-    /**
-     * @var string $jobType
-     *
-     * @ORM\Column(name="job_type", type="string", length=255, nullable=false)
-     */
     private $jobType;
 
-    /**
-     * @var string $company
-     *
-     * @ORM\Column(name="company", type="string", length=255, nullable=false)
-     */
     private $company;
-
-    /**
-     * @var string $logo
-     *
-     * @ORM\Column(name="logo", type="string", length=255, nullable=true)
-     */
+    
     private $logo;
-
-    /**
-     * @var string $url
-     *
-     * @ORM\Column(name="url", type="string", length=255, nullable=true)
-     */
+    
     private $url;
-
-    /**
-     * @var string $position
-     *
-     * @ORM\Column(name="position", type="string", length=255, nullable=true)
-     */
+    
     private $position;
 
-    /**
-     * @var string $location
-     *
-     * @ORM\Column(name="location", type="string", length=255, nullable=false)
-     */
     private $location;
 
-    /**
-     * @var string $description
-     *
-     * @ORM\Column(name="description", type="string", length=4000, nullable=false)
-     */
     private $description;
 
-    /**
-     * @var string $howToApply
-     *
-     * @ORM\Column(name="how_to_apply", type="string", length=4000, nullable=false)
-     */
     private $howToApply;
 
-    /**
-     * @var boolean $isPublic
-     *
-     * @ORM\Column(name="is_public", type="boolean", nullable=false)
-     */
     private $isPublic;
 
-    /**
-     * @var boolean $isActivated
-     *
-     * @ORM\Column(name="is_activated", type="boolean", nullable=false)
-     */
     private $isActivated;
 
-    /**
-     * @var string $email
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=false)
-     */
     private $email;
 
-    /**
-     * @var datetime $createdAt
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
     private $createdAt;
 
-    /**
-     * @var datetime $updatedAt
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
     private $updatedAt;
 
-    /**
-     * @var datetime $expiresAt
-     *
-     * @ORM\Column(name="expires_at", type="datetime", nullable=false)
-     */
     private $expiresAt;
 
-    /**
-     * @var Category
-     *
-     * @ORM\ManyToOne(targetEntity="Categories")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     * })
-     */
     private $category;
 
    
     
-    /** @ORM\PrePersist */
     public function setDateTimesOnPersist()
     {
        $this->setCreatedAt(new \DateTime); 
        $createdAt = clone($this->getCreatedAt());
        $this->setExpiresAt($createdAt->modify('+'.self::ACTIVE_DAYS.' days'));
+    }
+    
+    public function setUpdatedAtOnUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime);
     }
 
     

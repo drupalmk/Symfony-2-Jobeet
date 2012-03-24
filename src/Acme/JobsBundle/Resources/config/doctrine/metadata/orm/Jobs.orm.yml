@@ -88,4 +88,6 @@ manyToOne:
     joinColumns:
     category_id:
       referencedColumnName: id
-  lifecycleCallbacks: {  }
+  lifecycleCallbacks:
+    prePersist: [ setDateTimesOnPersist ]
+    preUpdate: [ setUpdatedAtOnUpdate ]
