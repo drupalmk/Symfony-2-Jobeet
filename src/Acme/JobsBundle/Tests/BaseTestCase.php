@@ -1,6 +1,8 @@
 <?php
 
-require_once(__DIR__ . "/../../../app/AppKernel.php");
+namespace Acme\JobsBundle\Tests;
+
+require_once(__DIR__ . "/../../../../app/AppKernel.php");
 
 class BaseTestCase extends \PHPUnit_Framework_TestCase
 {

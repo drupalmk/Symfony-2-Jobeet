@@ -153,7 +153,7 @@ class JobsController extends Controller
 
     /**
      * Deletes a Jobs entity.
-     *
+     *  
      */
     public function deleteAction($id)
     {
