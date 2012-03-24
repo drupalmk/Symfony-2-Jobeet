@@ -29,6 +29,6 @@ class JobsType extends AbstractType
 
     public function getName()
     {
-        return 'job_form';
+        return 'job';
     }
 }

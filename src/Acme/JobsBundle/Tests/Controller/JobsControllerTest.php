@@ -15,6 +15,44 @@ class JobsControllerTest extends WebTestCase
         
         $this->assertEquals($crawler->filter('div.category_programming tr')->count(), 10);
     }
+    
+    public function testJobSubmit()
+    {
+        $client = static::createClient();
+
+        // Create a new entry in the database
+        $crawler = $client->request('GET', '/');
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+        
+        $crawler = $client->click($crawler->selectLink('Post a Job')->link()); 
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+
+        $form = $crawler->selectButton('Create')->form(array(
+            'job[jobType]'     => 'full-time',
+            'job[company]'     => 'Acme',
+            'job[url]'         => 'http://www.acme.com',
+            'job[position]'    => 'Web Developer',
+            'job[location]'    => 'Paris, France',
+            'job[description]' => 'Some description',
+            'job[howToApply]'  => 'Send resume',
+            'job[email]'       => 'jobs@acme.com',
+            'job[file]'        => '/home/marek/Obrazy/acme.gif',
+        ));
+        
+        $client->submit($form);
+        $crawler = $client->followRedirect();
+        
+        $this->assertTrue($crawler->filter('form#job_form')->count() == 0);
+        $this->assertTrue($crawler->filter('#job .logo')->count() == 1);
+
+        $crawler = $client->click($crawler->selectLink('Edit')->link());
+        
+        $client->submit($crawler->selectButton('Delete')->form());
+        $crawler = $client->followRedirect();
+        $this->assertTrue(200 === $client->getResponse()->getStatusCode());
+
+
+    }
     /*
     public function testCompleteScenario()
     {

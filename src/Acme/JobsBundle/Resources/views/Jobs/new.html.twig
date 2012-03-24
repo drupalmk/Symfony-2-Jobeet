@@ -2,7 +2,7 @@
 {% block content %}
 <h1>Jobs creation</h1>
 {{ form_errors(form) }}
-<form novalidate action="{{ path('jobs_create') }}" method="post" {{ form_enctype(form) }}>
+<form id="job_form" novalidate action="{{ path('jobs_create') }}" method="post" {{ form_enctype(form) }}>
      
     <table>
         <tr>
