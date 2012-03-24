@@ -1,9 +1,56 @@
 {% extends '::base.html.twig' %}
 {% block content %}
 <h1>Jobs creation</h1>
-
-<form action="{{ path('jobs_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+{{ form_errors(form) }}
+<form novalidate action="{{ path('jobs_create') }}" method="post" {{ form_enctype(form) }}>
+     
+    <table>
+        <tr>
+            <td>{{ form_label(form.category) }}</td>
+            <td>{{ form_widget(form.category) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.jobType) }}</td>
+            <td>{{ form_widget(form.jobType) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.company) }}</td>
+            <td>{{ form_widget(form.company) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.file) }}</td>
+            <td>{{ form_widget(form.file) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.url) }}</td>
+            <td>{{ form_widget(form.url) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.position) }}</td>
+            <td>{{ form_widget(form.position) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.location) }}</td>
+            <td>{{ form_widget(form.location) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.description) }}</td>
+            <td>{{ form_widget(form.description) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.howToApply) }}</td>
+            <td>{{ form_widget(form.howToApply) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.isPublic) }}</td>
+            <td>{{ form_widget(form.isPublic) }}</td>
+        </tr>
+        <tr>
+            <td>{{ form_label(form.email) }}</td>
+            <td>{{ form_widget(form.email) }}</td>
+        </tr>
+    </table>
+    {{ form_rest(form) }}
     <p>
         <button type="submit">Create</button>
     </p>

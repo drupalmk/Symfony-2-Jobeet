@@ -53,7 +53,7 @@ class Jobs
 
     private $howToApply;
 
-    private $isPublic;
+    private $isPublic = false;
 
     private $isActivated = false;
 
