@@ -58,7 +58,7 @@ Acme\JobsBundle\Entity\Jobs:
       column: how_to_apply
     isPublic:
       type: boolean
-      nullable: true
+      nullable: false
       column: is_public
     isActivated:
       type: boolean
