@@ -36,9 +36,12 @@
   </div>
  
   <div style="padding: 20px 0">
-     <a href="{{ path('jobs_edit', { 'id': entity.id }) }}">
-         Edit
-     </a>
+     <a href="{{ path('jobs_edit', { 'id': entity.id }) }}">Edit</a>
+     <a href="{{ path('jobs') }}">Back</a>
+     <form action="{{ path('jobs_delete', { 'id': entity.id }) }}" method="post">
+         {{ form_widget(delete_form) }}
+         <button type="submit">Delete</button>
+     </form>
   </div>
 </div>
 {% endblock %}
