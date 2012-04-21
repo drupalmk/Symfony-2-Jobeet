@@ -20,6 +20,7 @@ class AppKernel extends Kernel
 
             new Acme\JobsBundle\JobsBundle(),
 	    new Symfony\Bundle\DoctrineFixturesBundle\DoctrineFixturesBundle(),
+            new Acme\TestBundle\AcmeTestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,7 +1,11 @@
 parameters:
+     jobs.service.class: Acme\JobsBundle\Service\JobsService
 #    jobs.example.class: Acme\JobsBundle\Example
 
 services:
+     jobs.service:
+         class: %jobs.service.class%
+         arguments: [@doctrine.orm.entity_manager]
 #    jobs.example:
 #        class: %jobs.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,3 +1,7 @@
+AcmeTestBundle:
+    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+    prefix:   /
+
 JobsBundle:
     resource: "@JobsBundle/Resources/config/routing.yml"
     prefix:   /

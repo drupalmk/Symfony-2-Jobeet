@@ -10,7 +10,7 @@ class CategoriesRepository extends EntityRepository
     {
     $qb = $this->_em->createQueryBuilder();
     return $qb->add('select', 'c')
-            ->add('from', 'JobsBundle:Categories c')
+            ->add('from', $this->_entityName . ' c')
             ->innerJoin('c.jobs', 'j', 'WITH', 'j.category = c')
             ->getQuery()
             ->getResult();       

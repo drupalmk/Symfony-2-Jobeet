@@ -1,3 +1,4 @@
+.buildpath 
 /web/bundles/
 /app/bootstrap*
 /app/cache/*
@@ -5,14 +6,4 @@
 /vendor/
 /app/config/parameters.ini
 *~
-
-
-
-
-
-
-
-
-
-
 

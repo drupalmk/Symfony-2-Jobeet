@@ -24,3 +24,4 @@ Acme\JobsBundle\Entity\Categories:
       targetEntity: Jobs
       mappedBy: category  
   lifecycleCallbacks: {  }
+  repositoryClass: Acme\JobsBundle\Repository\CategoriesRepository

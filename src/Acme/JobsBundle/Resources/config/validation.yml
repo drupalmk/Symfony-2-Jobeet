@@ -17,7 +17,7 @@ Acme\JobsBundle\Entity\Jobs:
                 message: Must not be blank
         file:
             - File:
-                mimeTypes: [image/jpeg, image/png]
+                mimeTypes: [image/jpeg, image/png, image/gif]
         description:
             - NotBlank:
                 message: Must not be blank
