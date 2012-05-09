@@ -41,7 +41,7 @@ class JobsController extends Controller
        $categories = $em->getRepository('JobsBundle:Categories')->getWithActiveJobs($limit);
         
         return $this->render('JobsBundle:Jobs:index.html.twig', array(
-            'categories' => $categories
+            'categories' => $categories,
         ));
     }
 
