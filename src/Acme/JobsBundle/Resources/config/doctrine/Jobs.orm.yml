@@ -93,4 +93,4 @@ Acme\JobsBundle\Entity\Jobs:
     prePersist: [ setDateTimesOnPersist, generateRandomLogoFilename, upload ]
     preUpdate: [ setUpdatedAtOnUpdate, generateRandomLogoFilename, upload ]
     postRemove: [ removeUpload ]
-  repositoryClass: Acme\JobsBundle\Repository\JobsRepository
+  repositoryClass: Acme\JobsBundle\Entity\JobsRepository

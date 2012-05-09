@@ -19,9 +19,26 @@ class JobsController extends Controller
      */
     public function indexAction()
     {   
-    	$jobsService = $this->container->get('jobs.service');   
+    	#$jobsService = $this->container->get('jobs.service');   
+        #$limit = $this->container->getParameter('max_jobs_on_homepage');
+        #$categories = $jobsService->getCategoriesWithJobs($limit);
+
+        $em = $this->getDoctrine()->getEntityManager();
+      /*  $categories = $em->createQuery('SELECT c FROM JobsBundle:Categories c 
+                                          INNER JOIN c.jobs j WITH j.category = c GROUP BY c.id ORDER BY c.name ASC')
+                         ->getResult();
+                
         $limit = $this->container->getParameter('max_jobs_on_homepage');
-        $categories = $jobsService->getCategoriesWithJobs($limit);
+        $query = $em->createQuery('SELECT j FROM JobsBundle:Jobs j WHERE j.category = ?1  
+                                        AND j.expiresAt > ?2 ORDER BY j.expiresAt DESC');
+        $query->setMaxResults($limit);
+        foreach($categories as $category) {
+            $query->setParameter(1, $category->getId());
+            $query->setParameter(2, new \DateTime());
+            $category->setActiveJobs($query->getResult());
+        }*/
+       $limit = $this->container->getParameter('max_jobs_on_homepage');
+       $categories = $em->getRepository('JobsBundle:Categories')->getWithActiveJobs($limit);
         
         return $this->render('JobsBundle:Jobs:index.html.twig', array(
             'categories' => $categories

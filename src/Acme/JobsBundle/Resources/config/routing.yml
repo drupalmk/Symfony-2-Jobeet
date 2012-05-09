@@ -5,4 +5,4 @@ JobsBundle_homepage:
 JobsBundle_jobs:
     resource: "@JobsBundle/Resources/config/routing/jobs.yml"
     prefix:   /jobs
-
+    
